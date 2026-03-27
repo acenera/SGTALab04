@@ -1,7 +1,7 @@
 from django.urls import path
-
+from .. import htmlak
 from . import views
 
 urlpatterns = [
-    path("", views.register, name="register"),
+    path("", htmlak/erregistratu.html, name="register"),
 ]
