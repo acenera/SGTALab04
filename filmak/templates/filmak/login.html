@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Erregistratu filmen gunera</title>
+    <title>Login filmen gunera</title>
 </head>
 <body>
     <div class="navbar">
@@ -10,12 +10,12 @@
         <a href="{% url 'erregistratu' %}" class="navbaritem">Erregistratu</a>
         <a href="{% url 'login' %}" class="navbaritem">Login</a>
     </div>
-    <h1>Erregistratu</h1>
+    <h1>Login</h1>
 
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Erregistratu</button>
+        <button type="submit">Login</button>
     </form>
 </body>
 </html>

@@ -7,9 +7,6 @@ class Bozkatzailea(models.Model):
     # Beharrezko eremua
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.user.username
-
 class filmak_filma(models.Model):
     izenburua = models.CharField(max_length=100)
     zuzendaria = models.CharField(max_length=60)
@@ -22,8 +19,6 @@ class filmak_filma(models.Model):
         return self.izenburua
 
 class filmak_bozkatzailea(models.Model):
-    erabiltzailea_id = models.OneToOneField(Bozkatzailea, on_delete=models.CASCADE)
-    filma_id = models.ManyToManyField(filmak_filma)
-
-    def __str__(self):
-        return self.erabiltzailea_id
+    erabiltzailea = models.ForeignKey(Bozkatzailea, on_delete=models.CASCADE)
+    filma = models.ForeignKey(filmak_filma, on_delete=models.CASCADE)
+    data = models.DateTimeField(auto_now_add=True)

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu-Filmen zerrenda</title>
+</head>
+<body>
+    <h1>Filmen zerrenda</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Izenburua</th>
+                <th>Zuzendaria</th>
+                <th>Urtea</th>
+                <th>Generoa</th>
+                <th>Sinopsia</th>
+                <th>Bozkak</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for film in filmak %}
+            <tr>
+                <td>{{ film.izenburua }}</td>
+                <td>{{ film.zuzendaria }}</td>
+                <td>{{ film.urtea }}</td>
+                <td>{{ film.generoa }}</td>
+                <td>{{ film.sinopsia }}</td>
+                <td>{{ film.bozkak }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">Ez dago filma bat ere</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if filmak.has_previous %}
+                <a href="?page={{ filmak.previous_page_number }}">aurrekoa</a>
+            {% endif %}
+            <span class="current">
+                Orria {{ filmak.number }} / {{ filmak.paginator.num_pages }}
+            </span>
+            {% if filmak.has_next %}
+                <a href="?page={{ filmak.next_page_number }}">hurrengoa</a>
+            {% endif %}
+        </span>
+    </div>
+</body>
+</html>
