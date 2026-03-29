@@ -87,3 +87,16 @@ def filmakBozkatu(request):
     else:
         form = BozkatuForm()
     return render(request, "filmak/filmakBozkatu.html", {'form': form})
+
+@login_required(login_url='login')
+def bozkatutakoak(request):
+    if request.method == "POST":
+        ezabatzekoa=request.POST.get('film')
+        filma=filmak_filma.objects.get(pk=ezabatzekoa)
+        filma.bozkak -=1
+        filma.save()
+        filmak_bozkatzailea.objects.get(erabiltzailea__user=request.user, filma=filma).delete()
+        return redirect('bozkatutakoak')
+    erlazioak=filmak_bozkatzailea.objects.filter(erabiltzailea__user=request.user)
+    filmak=filmak_filma.objects.filter(id__in=erlazioak.values_list('filma_id', flat=True))
+    return render(request, "filmak/bozkatutakoak.html", {'filmak': filmak})

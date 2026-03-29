@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu - Bozkatutako filmak</title>
+</head>
+<body>
+    <h1>Nire gogoko filmak</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Izenburua</th>
+                    <th>Zuzendaria</th>
+                    <th>Urtea</th>
+                    <th>Generoa</th>
+                    <th>Bozkak</th>
+                    <th>Ekintza</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for film in filmak %}
+                <tr>
+                    <td>{{ film.izenburua }}</td>
+                    <td>{{ film.zuzendaria }}</td>
+                    <td>{{ film.urtea }}</td>
+                    <td>{{ film.generoa }}</td>
+                    <td>{{ film.bozkak }}</td>
+                    <td>
+                    <button type="submit" name="film" value="{{ film.id }}">Botoa kendu</button>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3">Ez dago filma bat ere</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </form>
+</body>
+</html>

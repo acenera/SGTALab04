@@ -8,5 +8,6 @@ urlpatterns = [
     path("", views.login, name="login"),
     path("menu", views.menu, name="menu"),
     path("filmen_zerrenda", views.filmenZerrenda, name="filmenZerrenda"),
-    path("bozkatu", views.filmakBozkatu, name="filmakBozkatu")
+    path("bozkatu", views.filmakBozkatu, name="filmakBozkatu"),
+    path("bozkatutakoak", views.bozkatutakoak, name="bozkatutakoak")
 ]
