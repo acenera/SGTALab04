@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu- Zaleak</title>
+</head>
+<body>
+    <h1>Zaleak</h1>
+    <p>Aukeratu film bat nork bozkatu duen ikusteko:</p>
+    <form method="post">
+        {% csrf_token %}
+        <div class="scrollable-list">
+            {{ form.filmak }}
+        </div>
+        <br>
+        <button type="submit">Erakutsi zaleak</button>
+    </form>
+</body>
+</html>

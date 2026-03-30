@@ -100,3 +100,10 @@ def bozkatutakoak(request):
     erlazioak=filmak_bozkatzailea.objects.filter(erabiltzailea__user=request.user)
     filmak=filmak_filma.objects.filter(id__in=erlazioak.values_list('filma_id', flat=True))
     return render(request, "filmak/bozkatutakoak.html", {'filmak': filmak})
+
+@login_required(login_url='login')
+def zaleak(request):
+    if request.method == "POST":
+        form = ZaleakForm(request.POST)
+        return render(request, "filmak/zaleak.html", {'form':form})
+    return render(request, "filmak/zaleak.html")

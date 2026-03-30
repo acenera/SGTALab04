@@ -20,3 +20,7 @@ class BozkatuForm(forms.Form):
         widget=forms.CheckboxSelectMultiple,
         required=True
     )
+class ZaleakForm(forms.Form):
+    filmak = forms.ModelMultipleChoiceField(queryset=filmak_filma.objects.all(),
+        widget=forms.ModelMultipleChoiceField,
+        required=True)
