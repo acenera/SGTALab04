@@ -21,6 +21,7 @@ class BozkatuForm(forms.Form):
         required=True
     )
 class ZaleakForm(forms.Form):
-    filmak = forms.ModelMultipleChoiceField(queryset=filmak_filma.objects.all(),
-        widget=forms.ModelMultipleChoiceField,
-        required=True)
+    filmak = forms.ModelChoiceField(
+        queryset=filmak_filma.objects.all(),
+        required=True
+    )

@@ -1,6 +1,9 @@
 from django.contrib.auth.decorators import login_required
+from django.db import IntegrityError
 from django.shortcuts import render, redirect
-from .forms import RegisterForm, LoginForm, BozkatuForm
+
+import filmak
+from .forms import RegisterForm, LoginForm, BozkatuForm, ZaleakForm
 from .models import filmak_filma, filmak_bozkatzailea, Bozkatzailea
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login
@@ -79,11 +82,14 @@ def filmakBozkatu(request):
             except:
                 bozkatzailea = Bozkatzailea.objects.get(user=request.user)
             filmak = form.cleaned_data['filmak']
-            for filma in filmak:
-                filma.bozkak += 1
-                filma.save()
-                filmak_bozkatzailea.objects.create(erabiltzailea=bozkatzailea, filma=filma)
-            return redirect('menu')
+            try:
+                for filma in filmak:
+                    filmak_bozkatzailea.objects.create(erabiltzailea=bozkatzailea, filma=filma)
+                    filma.bozkak += 1
+                    filma.save()
+                return redirect('menu')
+            except IntegrityError:
+                form.add_error('filmak', 'ezin duzu film bera bi aldiz bozkatu')
     else:
         form = BozkatuForm()
     return render(request, "filmak/filmakBozkatu.html", {'form': form})
@@ -103,7 +109,16 @@ def bozkatutakoak(request):
 
 @login_required(login_url='login')
 def zaleak(request):
+    zaleak=[]
     if request.method == "POST":
         form = ZaleakForm(request.POST)
-        return render(request, "filmak/zaleak.html", {'form':form})
-    return render(request, "filmak/zaleak.html")
+        if form.is_valid():
+            filma = form.cleaned_data['filmak']
+            loturak = filmak_bozkatzailea.objects.filter(filma=filma)
+            for lotura in loturak:
+                zaleak.append(lotura.erabiltzailea.user)
+
+        return render(request, "filmak/zaleak.html", {'form':form, 'zaleak': zaleak, 'filma': filma})
+    else:
+        form = ZaleakForm()
+    return render(request, "filmak/zaleak.html", {'form': form})

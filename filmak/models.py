@@ -22,3 +22,11 @@ class filmak_bozkatzailea(models.Model):
     erabiltzailea = models.ForeignKey(Bozkatzailea, on_delete=models.CASCADE)
     filma = models.ForeignKey(filmak_filma, on_delete=models.CASCADE)
     data = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['erabiltzailea', 'filma'],
+                name='unique_vote_per_user_per_film'
+            )
+        ]

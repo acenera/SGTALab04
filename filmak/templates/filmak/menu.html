@@ -5,6 +5,7 @@
     <title>Menu-Filmen gunea</title>
 </head>
 <body>
+    {% block sidebar %}
     <div class="navbar">
         <h2>Gunea</h2>
         <a href="{% url 'filmenZerrenda' %}" class="navbaritem">Filmen Zerrenda</a>
@@ -12,6 +13,7 @@
         <a href="{% url 'bozkatutakoak' %}" class="navbaritem">Bozkatutakoak</a>
         <a href="{% url 'zaleak' %}" class="navbaritem">Zaleak ikusi</a>
     </div>
+    {% endblock %}
     <h1>Menu nagusia</h1>
 
     <p>Kaixo {{ username }}</p>

@@ -15,5 +15,29 @@
         <br>
         <button type="submit">Erakutsi zaleak</button>
     </form>
+    {% if zaleak %}
+            <h2>{{ filma }}-ren zaleak:</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Erabiltzailea</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for zalea in zaleak %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ zalea.username }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="3">Pelikula honek ez du bozkatzailerik</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <p>Guztira: {{ zaleak|length }} zale.</p>
+    {% endif %}
 </body>
 </html>
