@@ -187,7 +187,7 @@ form div > * {
 
 #bozkatu-form div select {
     height: 400px;        /* altura total de la lista */
-    width: 100%;          /* ocupa todo el ancho del form */
+    width: 100%;
     box-sizing: border-box;
     font-size: 16px;      /* aumenta tamaño de texto si quieres más legibilidad */
 }
