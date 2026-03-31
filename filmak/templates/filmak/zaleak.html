@@ -5,6 +5,8 @@
     <title>Menu- Zaleak</title>
 </head>
 <body>
+    {% extends 'filmak/nabigazioa.html' %}
+    {% block content %}
     <h1>Zaleak</h1>
     <p>Aukeratu film bat nork bozkatu duen ikusteko:</p>
     <form method="post">
@@ -17,7 +19,7 @@
     </form>
     {% if zaleak %}
             <h2>{{ filma }}-ren zaleak:</h2>
-            <table>
+            <table border="1" cellpadding="5" cellspacing="0">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -31,13 +33,17 @@
                             <td>{{ zalea.username }}</td>
                         </tr>
                     {% empty %}
-                        <tr>
-                            <td colspan="3">Pelikula honek ez du bozkatzailerik</td>
-                        </tr>
+
                     {% endfor %}
                 </tbody>
             </table>
             <p>Guztira: {{ zaleak|length }} zale.</p>
+    {% else %}
+        <br>
+        <tr>
+            <td colspan="3">{{ abisua }}</td>
+        </tr>
     {% endif %}
+    {% endblock %}
 </body>
 </html>

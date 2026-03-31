@@ -5,9 +5,11 @@
     <title>Menu-Filmen zerrenda</title>
 </head>
 <body>
+    {% extends 'filmak/nabigazioa.html' %}
+    {% block content %}
     <h1>Filmen zerrenda</h1>
 
-    <table>
+    <table border="1" cellpadding="5" cellspacing="0">
         <thead>
             <tr>
                 <th>Izenburua</th>
@@ -49,5 +51,6 @@
             {% endif %}
         </span>
     </div>
+    {% endblock %}
 </body>
 </html>

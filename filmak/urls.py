@@ -11,4 +11,5 @@ urlpatterns = [
     path("bozkatu", views.filmakBozkatu, name="filmakBozkatu"),
     path("bozkatutakoak", views.bozkatutakoak, name="bozkatutakoak"),
     path("zaleak", views.zaleak, name="zaleak"),
+    path("logOut", views.logOut, name="logOut"),
 ]

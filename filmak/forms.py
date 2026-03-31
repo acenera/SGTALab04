@@ -17,7 +17,6 @@ class LoginForm(forms.Form):
 class BozkatuForm(forms.Form):
     filmak = forms.ModelMultipleChoiceField(
         queryset=filmak_filma.objects.all(),
-        widget=forms.CheckboxSelectMultiple,
         required=True
     )
 class ZaleakForm(forms.Form):

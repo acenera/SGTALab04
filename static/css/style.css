@@ -1,0 +1,193 @@
+/* ===== RESET SUAVE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== BODY ===== */
+body {
+    font-family: "Georgia", "Times New Roman", serif;
+    background-color: #f4f6f5;
+    color: #2c2c2c;
+}
+
+/* ===== NAVBAR LATERAL ===== */
+.navbar {
+    width: 220px;
+    height: 100vh;
+    background: linear-gradient(180deg, #4a6158, #768080);
+    padding: 20px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    border-right: 3px solid #c2a96b;
+    box-shadow: 4px 0 10px rgba(0,0,0,0.2);
+}
+
+.navbar a {
+    display: block;
+    color: #7fb3ff; /* azul navegación */
+    text-decoration: none;
+    margin: 12px 0;
+    font-size: 16px;
+    padding: 8px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: #ffffff;
+    padding-left: 12px;
+}
+
+/* ===== CONTENIDO ===== */
+.main-content {
+    margin-left: 240px; /* espacio para la navbar */
+    padding: 30px;
+    width: calc(100% - 240px);
+}
+
+/* ===== TÍTULOS ===== */
+h1, h2, h3 {
+    color: #265034; /* verde elegante */
+    font-weight: bold;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+h1 {
+    border-bottom: 2px solid #c2a96b;
+    padding-bottom: 5px;
+}
+
+/* ===== TEXTO ===== */
+p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* ===== TABLAS ===== */
+table {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #ffffff;
+    border: 2px solid #c2a96b;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+thead {
+    background-color: #1e3d2f;
+    color: #ffffff;
+}
+
+thead th {
+    padding: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f2f5f3;
+}
+
+tbody tr:hover {
+    background-color: #e0ebe6;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* ===== BOTONES ===== */
+button {
+    background-color: #1e5631;
+    color: white;
+    border: 1px solid #c2a96b;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #163f25;
+}
+
+/* ===== FORMULARIOS ===== */
+form {
+    width: auto;            /* se ajusta al contenido */
+    max-width: 90%;         /* nunca más del 90% de la pantalla */
+    padding: 20px;
+    box-sizing: border-box; /* incluye padding en el ancho */
+    background-color: #f9f9f9; /* tono sobrio */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border: 2px solid #c2a96b;
+}
+
+.form-container {
+    display: inline-block;  /* se ajusta al contenido */
+    max-width: 90%;
+    margin: 20px auto;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0 15px 0;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #1e5631;
+}
+
+/* ===== TOQUE HOLLYWOOD (DETALLES DORADOS) ===== */
+.navbar::before {
+    content: "🎬";
+    display: block;
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+/* ===== MENSAJES ===== */
+.alert {
+    padding: 10px;
+    border: 1px solid #c2a96b;
+    background-color: #f9f4e7;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+/* ===== FORM FILMAK ===== */
+form div > * {
+    display: block;          /* cada opción en una línea */
+    padding: 12px 10px;       /* espacio interno */
+    border-radius: 4px;
+    cursor: pointer;         /* clicable */
+    transition: background 0.2s ease;
+}
+
+#bozkatu-form div select {
+    height: 400px;        /* altura total de la lista */
+    width: 100%;          /* ocupa todo el ancho del form */
+    box-sizing: border-box;
+    font-size: 16px;      /* aumenta tamaño de texto si quieres más legibilidad */
+}

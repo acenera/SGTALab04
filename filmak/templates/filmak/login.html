@@ -5,11 +5,8 @@
     <title>Login filmen gunera</title>
 </head>
 <body>
-    <div class="navbar">
-        <h2>Gunea</h2>
-        <a href="{% url 'erregistratu' %}" class="navbaritem">Erregistratu</a>
-        <a href="{% url 'login' %}" class="navbaritem">Login</a>
-    </div>
+    {% extends 'filmak/nabigazioa.html' %}
+    {% block content %}
     <h1>Login</h1>
 
     <form method="post">
@@ -17,5 +14,6 @@
         {{ form.as_p }}
         <button type="submit">Login</button>
     </form>
+    {% endblock %}
 </body>
 </html>

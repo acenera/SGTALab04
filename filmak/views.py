@@ -6,7 +6,7 @@ import filmak
 from .forms import RegisterForm, LoginForm, BozkatuForm, ZaleakForm
 from .models import filmak_filma, filmak_bozkatzailea, Bozkatzailea
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import authenticate, login as auth_login, logout
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 
@@ -56,7 +56,7 @@ def login(request):
 
 @login_required(login_url='login')
 def menu(request):
-    return render(request, "filmak/menu.html", {'username': request.session['erabiltzailea']})
+    return render(request, "filmak/menu.html", {'username': request.user})
 
 @login_required(login_url='login')
 def filmenZerrenda(request):
@@ -105,6 +105,14 @@ def bozkatutakoak(request):
         return redirect('bozkatutakoak')
     erlazioak=filmak_bozkatzailea.objects.filter(erabiltzailea__user=request.user)
     filmak=filmak_filma.objects.filter(id__in=erlazioak.values_list('filma_id', flat=True))
+    paginator = Paginator(filmak, 10)
+    page = request.GET.get('page')
+    try:
+        filmak = paginator.page(page)
+    except PageNotAnInteger:
+        filmak = paginator.page(1)
+    except EmptyPage:
+        filmak = paginator.page(paginator.num_pages)
     return render(request, "filmak/bozkatutakoak.html", {'filmak': filmak})
 
 @login_required(login_url='login')
@@ -113,12 +121,20 @@ def zaleak(request):
     if request.method == "POST":
         form = ZaleakForm(request.POST)
         if form.is_valid():
+            abisua = ""
             filma = form.cleaned_data['filmak']
             loturak = filmak_bozkatzailea.objects.filter(filma=filma)
-            for lotura in loturak:
-                zaleak.append(lotura.erabiltzailea.user)
-
-        return render(request, "filmak/zaleak.html", {'form':form, 'zaleak': zaleak, 'filma': filma})
+            if loturak:
+                for lotura in loturak:
+                    zaleak.append(lotura.erabiltzailea.user)
+            else:
+                abisua="Pelikula honek ez du bozkatzailerik"
+            return render(request, "filmak/zaleak.html", {'form':form, 'zaleak': zaleak, 'filma' : filma, 'abisua' : abisua})
     else:
         form = ZaleakForm()
     return render(request, "filmak/zaleak.html", {'form': form})
+
+@login_required(login_url='login')
+def logOut(request):
+    logout(request)
+    return redirect('login')

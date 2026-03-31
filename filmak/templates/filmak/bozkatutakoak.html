@@ -5,11 +5,13 @@
     <title>Menu - Bozkatutako filmak</title>
 </head>
 <body>
+    {% extends 'filmak/nabigazioa.html' %}
+    {% block content %}
     <h1>Nire gogoko filmak</h1>
 
-    <form method="post">
+    <form class="table-container" method="post">
         {% csrf_token %}
-        <table>
+        <table border="1" cellpadding="5" cellspacing="0">
             <thead>
                 <tr>
                     <th>Izenburua</th>
@@ -39,6 +41,21 @@
                 {% endfor %}
             </tbody>
         </table>
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if filmak.has_previous %}
+                    <a href="?page={{ filmak.previous_page_number }}">aurrekoa</a>
+                {% endif %}
+                <span class="current">
+                    Orria {{ filmak.number }} / {{ filmak.paginator.num_pages }}
+                </span>
+                {% if filmak.has_next %}
+                    <a href="?page={{ filmak.next_page_number }}">hurrengoa</a>
+                {% endif %}
+            </span>
+        </div>
     </form>
+    {% endblock %}
 </body>
 </html>
