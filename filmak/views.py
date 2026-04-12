@@ -2,12 +2,13 @@ from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.shortcuts import render, redirect
 
-import filmak
 from .forms import RegisterForm, LoginForm, BozkatuForm, ZaleakForm
 from .models import filmak_filma, filmak_bozkatzailea, Bozkatzailea
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+from django.utils.translation import gettext as _
 # Create your views here.
 
 def erregistratu(request):
@@ -21,7 +22,7 @@ def erregistratu(request):
             pasahitza = form.cleaned_data['Pasahitza']
             pasahitzaErrepikatu = form.cleaned_data['Pasahitza_Errepikatu']
             if pasahitza != pasahitzaErrepikatu:
-                form.add_error('Pasahitza_Errepikatu', 'Pasahitzak ez datoz bat')
+                form.add_error('Pasahitza_Errepikatu', _('Pasahitzak ez datoz bat'))
             else:
                 #erregistroa egin
                 try:
@@ -29,7 +30,7 @@ def erregistratu(request):
                     erab.save()
                     return redirect("login")
                 except:
-                    form.add_error('Izena', 'erabiltzalea erregistratuta dago.')
+                    form.add_error('Izena', _('erabiltzalea erregistratuta dago.'))
     else:
         form = RegisterForm()
     return render(request, "filmak/erregistratu.html", {'form':form})
@@ -47,9 +48,9 @@ def login(request):
                     request.session['erabiltzailea'] = erabiltzailea
                     return redirect("menu")
                 else:
-                    form.add_error('Erabiltzailea', 'kontua desgaituta dago')
+                    form.add_error('Erabiltzailea', _('kontua desgaituta dago'))
             else:
-                form.add_error('Erabiltzailea', 'Kredentzial okerrak')
+                form.add_error('Erabiltzailea', _('Kredentzial okerrak'))
     else:
         form = LoginForm()
     return render(request, "filmak/login.html", {'form':form})
@@ -89,7 +90,7 @@ def filmakBozkatu(request):
                     filma.save()
                 return redirect('menu')
             except IntegrityError:
-                form.add_error('filmak', 'ezin duzu film bera bi aldiz bozkatu')
+                form.add_error('filmak', _('ezin duzu film bera bi aldiz bozkatu'))
     else:
         form = BozkatuForm()
     return render(request, "filmak/filmakBozkatu.html", {'form': form})
@@ -128,7 +129,7 @@ def zaleak(request):
                 for lotura in loturak:
                     zaleak.append(lotura.erabiltzailea.user)
             else:
-                abisua="Pelikula honek ez du bozkatzailerik"
+                abisua=_("Pelikula honek ez du bozkatzailerik.")
             return render(request, "filmak/zaleak.html", {'form':form, 'zaleak': zaleak, 'filma' : filma, 'abisua' : abisua})
     else:
         form = ZaleakForm()

@@ -1,8 +1,10 @@
+{% extends 'filmak/nabigazioa.html' %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Menu - Filmak bozkatu</title>
+    <title>{% trans "Menu - Filmak bozkatu" %}</title>
         <style>
         .scrollable-list {
             height: 300px;
@@ -18,18 +20,17 @@
     </style>
 </head>
 <body>
-    {% extends 'filmak/nabigazioa.html' %}
     {% block content %}
-    <h1>Filmak Bozkatu</h1>
-    <p>Hautatu zure gogoko filmak zerrendatik:</p>
-    <h3>Filmak (CTRL + shift aukera gehiago hautatzeko):</h3>
+    <h1>{% trans "Filmak Bozkatu" %}</h1>
+    <p>{% trans "Hautatu zure gogoko filmak zerrendatik:" %}</p>
+    <h3>{% trans "Filmak (CTRL + shift aukera gehiago hautatzeko):" %}</h3>
     <form method="post" id="bozkatu-form">
         {% csrf_token %}
         <div>
             {{ form.filmak }}
         </div>
         <br>
-        <button type="submit">Bozkatu</button>
+        <button type="submit">{% trans "Bozkatu" %}</button>
     </form>
     {% endblock %}
 </body>

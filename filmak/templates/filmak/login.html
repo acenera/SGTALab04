@@ -1,18 +1,18 @@
+{% extends 'filmak/nabigazioa.html' %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Login filmen gunera</title>
+    <title>{% trans "Login filmen gunera" %}</title>
 </head>
 <body>
-    {% extends 'filmak/nabigazioa.html' %}
     {% block content %}
-    <h1>Login</h1>
-
+    <h1>{% trans "Login" %}</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Login</button>
+        <button type="submit">{% trans "Login" %}</button>
     </form>
     {% endblock %}
 </body>

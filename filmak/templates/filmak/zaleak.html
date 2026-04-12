@@ -1,29 +1,32 @@
+{% extends 'filmak/nabigazioa.html' %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Menu- Zaleak</title>
+    <title>{% trans "Menu- Zaleak" %}</title>
 </head>
 <body>
-    {% extends 'filmak/nabigazioa.html' %}
     {% block content %}
-    <h1>Zaleak</h1>
-    <p>Aukeratu film bat nork bozkatu duen ikusteko:</p>
+    <h1>{% trans "Zaleak" %}</h1>
+    <p>{% trans "Aukeratu film bat nork bozkatu duen ikusteko:" %}</p>
     <form method="post">
         {% csrf_token %}
         <div class="scrollable-list">
             {{ form.filmak }}
         </div>
         <br>
-        <button type="submit">Erakutsi zaleak</button>
+        <button type="submit">{% trans "Erakutsi zaleak" %}</button>
     </form>
     {% if zaleak %}
+        {% blocktrans %}
             <h2>{{ filma }}-ren zaleak:</h2>
+        {% endblocktrans %}
             <table border="1" cellpadding="5" cellspacing="0">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Erabiltzailea</th>
+                        <th>{% trans "Erabiltzailea" %}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,7 +40,7 @@
                     {% endfor %}
                 </tbody>
             </table>
-            <p>Guztira: {{ zaleak|length }} zale.</p>
+            <p>{% trans "Guztira:" %} {{ zaleak|length }} {% trans "zale." %}</p>
     {% else %}
         <br>
         <tr>

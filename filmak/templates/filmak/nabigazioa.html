@@ -1,25 +1,40 @@
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <title>Filmen gunea</title>
+    <title>{% trans "Filmen gunea" %}</title>
 </head>
 <body>
     <div class="navbar">
-        <a href="{% url 'menu' %}" class="navbaritem"><h2>Gunea</h2></a>
+        <a href="{% url 'menu' %}" class="navbaritem"><h2>{% trans "Gunea" %}</h2></a>
         {% if user.is_authenticated  %}
-            <a href="{% url 'filmenZerrenda' %}" class="navbaritem">Filmen Zerrenda</a>
-            <a href="{% url 'filmakBozkatu' %}" class="navbaritem">Filma Bozkatu</a>
-            <a href="{% url 'bozkatutakoak' %}" class="navbaritem">Bozkatutakoak</a>
-            <a href="{% url 'zaleak' %}" class="navbaritem">Zaleak ikusi</a>
-            <a href="{% url 'logOut' %}" class="navbaritem">Saioa amaitu</a>
+            <a href="{% url 'filmenZerrenda' %}" class="navbaritem">{% trans "Filmen Zerrenda" %}</a>
+            <a href="{% url 'filmakBozkatu' %}" class="navbaritem">{% trans "Filma Bozkatu" %}</a>
+            <a href="{% url 'bozkatutakoak' %}" class="navbaritem">{% trans "Bozkatutakoak" %}</a>
+            <a href="{% url 'zaleak' %}" class="navbaritem">{% trans "Zaleak ikusi" %}</a>
+            <a href="{% url 'logOut' %}" class="navbaritem">{% trans "Saioa amaitu" %}</a>
         {% else %}
-            <a href="{% url 'erregistratu' %}" class="navbaritem">Erregistratu</a>
-            <a href="{% url 'login' %}" class="navbaritem">Login</a>
+            <a href="{% url 'erregistratu' %}" class="navbaritem">{% trans "Erregistratu" %}</a>
+            <a href="{% url 'login' %}" class="navbaritem">{% trans "Login" %}</a>
         {% endif %}
+
+        <form action="{% url 'set_language' %}" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.path }}">
+
+        <select name="language">
+            <option value="en" {% if request.LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+            <option value="eu" {% if request.LANGUAGE_CODE == 'eu' %}selected{% endif %}>Euskera</option>
+            <option value="es" {% if request.LANGUAGE_CODE == 'es' %}selected{% endif %}>Español</option>
+        </select>
+
+        <input type="submit" value="{% trans 'ok' %}">
+        </form>
     </div>
+
     <div class="main-content">
         {% block content %}
         {% endblock %}

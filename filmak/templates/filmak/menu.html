@@ -1,17 +1,21 @@
+{% extends 'filmak/nabigazioa.html' %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Menu-Filmen gunea</title>
+    <title>{% trans "Menu-Filmen gunea" %}</title>
 </head>
 <body>
-    {% extends 'filmak/nabigazioa.html' %}
     {% block content %}
-    <h1>Menu nagusia</h1>
+        {% blocktrans %}
 
-    <p>Kaixo {{ username }}</p>
+        <h1>Menu nagusia</h1>
 
-    <p>Aukeratu menutik egin nahi duzun ekintza</p>
+        <p>Kaixo {{ username }}</p>
+
+        <p>Aukeratu menutik egin nahi duzun ekintza</p>
+        {% endblocktrans %}
     {% endblock %}
 </body>
 </html>
