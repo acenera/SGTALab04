@@ -9,10 +9,10 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-04-12 19:58+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2026-04-13 00:00+0200\n"
+"Last-Translator: YOUR NAME <email@example.com>\n"
+"Language-Team: English\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -233,6 +233,26 @@ msgstr "You cannot vote the same film twice"
 #: .\filmak\views.py:132
 msgid "Pelikula honek ez du bozkatzailerik."
 msgstr "This film has no voters."
+
+#: .\filmak\forms.py
+msgid "Izena"
+msgstr "First name"
+
+#: .\filmak\forms.py
+msgid "Abizena"
+msgstr "Last name"
+
+#: .\filmak\forms.py
+msgid "Email"
+msgstr "Email"
+
+#: .\filmak\forms.py
+msgid "Pasahitza"
+msgstr "Password"
+
+#: .\filmak\forms.py
+msgid "Pasahitza Errepikatu"
+msgstr "Repeat password"
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:16
 msgid "Messages"
